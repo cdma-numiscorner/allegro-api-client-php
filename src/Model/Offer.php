@@ -44,9 +44,9 @@ use \AllegroApi\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class Offer implements ModelInterface, ArrayAccess, \JsonSerializable
+class Offer implements ModelInterface, ArrayAccess
 {
-    public const DISCRIMINATOR = null;
+    const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -68,12 +68,9 @@ class Offer implements ModelInterface, ArrayAccess, \JsonSerializable
         'compatibility_list' => '\AllegroApi\Model\CompatibilityList',
         'contact' => '\AllegroApi\Model\JustId',
         'created_at' => '\DateTime',
-        'custom_parameters' => '\AllegroApi\Model\CustomParameter[]',
-        'delivery' => '\AllegroApi\Model\DeliveryFull',
+        'delivery' => '\AllegroApi\Model\Delivery',
         'description' => '\AllegroApi\Model\StandardizedDescription',
-        'discounts' => '\AllegroApi\Model\Discounts',
         'external' => '\AllegroApi\Model\ExternalId',
-        'fundraising_campaign' => '\AllegroApi\Model\JustId',
         'id' => 'string',
         'images' => '\AllegroApi\Model\ImageUrl[]',
         'location' => '\AllegroApi\Model\Location',
@@ -83,7 +80,7 @@ class Offer implements ModelInterface, ArrayAccess, \JsonSerializable
         'product' => '\AllegroApi\Model\JustId',
         'promotion' => '\AllegroApi\Model\Promotion',
         'publication' => '\AllegroApi\Model\Publication',
-        'selling_mode' => '\AllegroApi\Model\SellingModeWithNetPrice',
+        'selling_mode' => '\AllegroApi\Model\SellingMode',
         'tax' => '\AllegroApi\Model\Tax',
         'size_table' => '\AllegroApi\Model\JustId',
         'stock' => '\AllegroApi\Model\Stock',
@@ -107,12 +104,9 @@ class Offer implements ModelInterface, ArrayAccess, \JsonSerializable
         'compatibility_list' => null,
         'contact' => null,
         'created_at' => 'date-time',
-        'custom_parameters' => null,
         'delivery' => null,
         'description' => null,
-        'discounts' => null,
         'external' => null,
-        'fundraising_campaign' => null,
         'id' => null,
         'images' => null,
         'location' => null,
@@ -165,12 +159,9 @@ class Offer implements ModelInterface, ArrayAccess, \JsonSerializable
         'compatibility_list' => 'compatibilityList',
         'contact' => 'contact',
         'created_at' => 'createdAt',
-        'custom_parameters' => 'customParameters',
         'delivery' => 'delivery',
         'description' => 'description',
-        'discounts' => 'discounts',
         'external' => 'external',
-        'fundraising_campaign' => 'fundraisingCampaign',
         'id' => 'id',
         'images' => 'images',
         'location' => 'location',
@@ -202,12 +193,9 @@ class Offer implements ModelInterface, ArrayAccess, \JsonSerializable
         'compatibility_list' => 'setCompatibilityList',
         'contact' => 'setContact',
         'created_at' => 'setCreatedAt',
-        'custom_parameters' => 'setCustomParameters',
         'delivery' => 'setDelivery',
         'description' => 'setDescription',
-        'discounts' => 'setDiscounts',
         'external' => 'setExternal',
-        'fundraising_campaign' => 'setFundraisingCampaign',
         'id' => 'setId',
         'images' => 'setImages',
         'location' => 'setLocation',
@@ -239,12 +227,9 @@ class Offer implements ModelInterface, ArrayAccess, \JsonSerializable
         'compatibility_list' => 'getCompatibilityList',
         'contact' => 'getContact',
         'created_at' => 'getCreatedAt',
-        'custom_parameters' => 'getCustomParameters',
         'delivery' => 'getDelivery',
         'description' => 'getDescription',
-        'discounts' => 'getDiscounts',
         'external' => 'getExternal',
-        'fundraising_campaign' => 'getFundraisingCampaign',
         'id' => 'getId',
         'images' => 'getImages',
         'location' => 'getLocation',
@@ -330,12 +315,9 @@ class Offer implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['compatibility_list'] = $data['compatibility_list'] ?? null;
         $this->container['contact'] = $data['contact'] ?? null;
         $this->container['created_at'] = $data['created_at'] ?? null;
-        $this->container['custom_parameters'] = $data['custom_parameters'] ?? null;
         $this->container['delivery'] = $data['delivery'] ?? null;
         $this->container['description'] = $data['description'] ?? null;
-        $this->container['discounts'] = $data['discounts'] ?? null;
         $this->container['external'] = $data['external'] ?? null;
-        $this->container['fundraising_campaign'] = $data['fundraising_campaign'] ?? null;
         $this->container['id'] = $data['id'] ?? null;
         $this->container['images'] = $data['images'] ?? null;
         $this->container['location'] = $data['location'] ?? null;
@@ -554,33 +536,9 @@ class Offer implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets custom_parameters
-     *
-     * @return \AllegroApi\Model\CustomParameter[]|null
-     */
-    public function getCustomParameters()
-    {
-        return $this->container['custom_parameters'];
-    }
-
-    /**
-     * Sets custom_parameters
-     *
-     * @param \AllegroApi\Model\CustomParameter[]|null $custom_parameters List of custom parameters. You can add up to 4 custom parameters, each containing exactly one value.
-     *
-     * @return self
-     */
-    public function setCustomParameters($custom_parameters)
-    {
-        $this->container['custom_parameters'] = $custom_parameters;
-
-        return $this;
-    }
-
-    /**
      * Gets delivery
      *
-     * @return \AllegroApi\Model\DeliveryFull|null
+     * @return \AllegroApi\Model\Delivery|null
      */
     public function getDelivery()
     {
@@ -590,7 +548,7 @@ class Offer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets delivery
      *
-     * @param \AllegroApi\Model\DeliveryFull|null $delivery delivery
+     * @param \AllegroApi\Model\Delivery|null $delivery delivery
      *
      * @return self
      */
@@ -626,30 +584,6 @@ class Offer implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets discounts
-     *
-     * @return \AllegroApi\Model\Discounts|null
-     */
-    public function getDiscounts()
-    {
-        return $this->container['discounts'];
-    }
-
-    /**
-     * Sets discounts
-     *
-     * @param \AllegroApi\Model\Discounts|null $discounts discounts
-     *
-     * @return self
-     */
-    public function setDiscounts($discounts)
-    {
-        $this->container['discounts'] = $discounts;
-
-        return $this;
-    }
-
-    /**
      * Gets external
      *
      * @return \AllegroApi\Model\ExternalId|null
@@ -669,30 +603,6 @@ class Offer implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setExternal($external)
     {
         $this->container['external'] = $external;
-
-        return $this;
-    }
-
-    /**
-     * Gets fundraising_campaign
-     *
-     * @return \AllegroApi\Model\JustId|null
-     */
-    public function getFundraisingCampaign()
-    {
-        return $this->container['fundraising_campaign'];
-    }
-
-    /**
-     * Sets fundraising_campaign
-     *
-     * @param \AllegroApi\Model\JustId|null $fundraising_campaign fundraising_campaign
-     *
-     * @return self
-     */
-    public function setFundraisingCampaign($fundraising_campaign)
-    {
-        $this->container['fundraising_campaign'] = $fundraising_campaign;
 
         return $this;
     }
@@ -920,7 +830,7 @@ class Offer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets selling_mode
      *
-     * @return \AllegroApi\Model\SellingModeWithNetPrice|null
+     * @return \AllegroApi\Model\SellingMode|null
      */
     public function getSellingMode()
     {
@@ -930,7 +840,7 @@ class Offer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets selling_mode
      *
-     * @param \AllegroApi\Model\SellingModeWithNetPrice|null $selling_mode selling_mode
+     * @param \AllegroApi\Model\SellingMode|null $selling_mode selling_mode
      *
      * @return self
      */
