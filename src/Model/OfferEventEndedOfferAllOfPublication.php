@@ -161,6 +161,7 @@ class OfferEventEndedOfferAllOfPublication implements ModelInterface, ArrayAcces
 
     const ENDED_BY_USER = 'USER';
     const ENDED_BY_ADMIN = 'ADMIN';
+    const ENDED_BY_EMPTY_STOCK = 'EMPTY_STOCK';
     const ENDED_BY_EXPIRATION = 'EXPIRATION';
     const ENDED_BY_ERROR = 'ERROR';
     const ENDED_BY_UNKNOWN = 'UNKNOWN';
@@ -177,6 +178,7 @@ class OfferEventEndedOfferAllOfPublication implements ModelInterface, ArrayAcces
         return [
             self::ENDED_BY_USER,
             self::ENDED_BY_ADMIN,
+            self::ENDED_BY_EMPTY_STOCK,
             self::ENDED_BY_EXPIRATION,
             self::ENDED_BY_ERROR,
             self::ENDED_BY_UNKNOWN,
