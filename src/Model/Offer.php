@@ -83,7 +83,8 @@ class Offer implements ModelInterface, ArrayAccess
         'stock' => '\AllegroApi\Model\Stock',
         'tecdoc_specification' => '\AllegroApi\Model\TecdocSpecification',
         'updated_at' => '\DateTime',
-        'validation' => '\AllegroApi\Model\Validation'
+        'validation' => '\AllegroApi\Model\Validation',
+        'language'   => 'string',
     ];
 
     /**
@@ -117,7 +118,8 @@ class Offer implements ModelInterface, ArrayAccess
         'stock' => null,
         'tecdoc_specification' => null,
         'updated_at' => 'date-time',
-        'validation' => null
+        'validation' => null,
+        'language'   => null,
     ];
 
     /**
@@ -172,7 +174,8 @@ class Offer implements ModelInterface, ArrayAccess
         'stock' => 'stock',
         'tecdoc_specification' => 'tecdocSpecification',
         'updated_at' => 'updatedAt',
-        'validation' => 'validation'
+        'validation' => 'validation',
+        'language'   => 'language'
     ];
 
     /**
@@ -206,7 +209,8 @@ class Offer implements ModelInterface, ArrayAccess
         'stock' => 'setStock',
         'tecdoc_specification' => 'setTecdocSpecification',
         'updated_at' => 'setUpdatedAt',
-        'validation' => 'setValidation'
+        'validation' => 'setValidation',
+        'language' => 'setLanguage'
     ];
 
     /**
@@ -240,7 +244,8 @@ class Offer implements ModelInterface, ArrayAccess
         'stock' => 'getStock',
         'tecdoc_specification' => 'getTecdocSpecification',
         'updated_at' => 'getUpdatedAt',
-        'validation' => 'getValidation'
+        'validation' => 'getValidation',
+        'language' => 'getLanguage'
     ];
 
     /**
@@ -329,6 +334,8 @@ class Offer implements ModelInterface, ArrayAccess
         $this->container['tecdoc_specification'] = isset($data['tecdoc_specification']) ? $data['tecdoc_specification'] : null;
         $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
         $this->container['validation'] = isset($data['validation']) ? $data['validation'] : null;
+        $this->container['language'] = isset($data['language']) ? $data['language'] : 'pl-PL';
+
     }
 
     /**
@@ -733,6 +740,35 @@ class Offer implements ModelInterface, ArrayAccess
 
         return $this;
     }
+
+    /**
+     * Gets language
+     *
+     * @return string
+     */
+    public function getLanguage()
+    {
+        return $this->container['language'];
+    }
+
+    /**
+     * Sets language
+     *
+     * @param string $language Language of the offer. we currently support are Polish (value “pl-PL”) and English (“en-US”).
+     *
+     * @return $this
+     */
+    public function setLanguage($language)
+    {
+        if (!in_array($language, ['pl-PL','en-US'])) {
+            throw new \InvalidArgumentException('invalid language for $language when calling Offer. we currently support are Polish (value pl-PL) and English (en-US).');
+        }
+
+        $this->container['language'] = $language;
+
+        return $this;
+    }
+
 
     /**
      * Gets parameters
